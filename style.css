@@ -5,15 +5,15 @@
 }
 
 body {
-  /* padding: 10px 20px; */
+  padding: 10px 20px;
   background-color: lightblue;
 }
 
 .container-board {
-  /* position: relative; */
+  position: relative;
   background-color: #333;
   border: 5px solid rebeccapurple;
-  /* padding: 10px; */
+  padding: 10px;
 }
 
 /* Create a row of boxes */
@@ -22,6 +22,7 @@ div.row div {
   display: inline-block;
   width: 20px;
   height: 20px;
+  box-sizing: border-box;
 }
 
 .brick {
@@ -32,7 +33,7 @@ div.row div {
   background-image: url("img/coin_2.gif");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 15px 15px;
+  background-size: cover;
   background-color: rebeccapurple;
 }
 
@@ -40,32 +41,32 @@ div.row div {
 }
 
 #pacman {
-  position: absolute;
+  position: absolute; /*Set pos relative within container-board. Now image will be positioned based on the container and not the body.*/
   background-image: url("img/pacman.gif");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 15px 15px;
-  /* top: 10px;
-  left: 10px; */
+  background-size: cover;
+  width: 25px;
+  height: 25px;
 }
 
 .ghost_1 {
   background-image: url("img/ghost_1.gif");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 15px 15px;
+  background-size: cover;
 }
 
 .ghost_2 {
   background-image: url("img/ghost_2.gif");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 15px 15px;
+  background-size: cover;
 }
 
 .ghost_3 {
   background-image: url("img/ghost_3.gif");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 15px 15px;
+  background-size: cover;
 }
