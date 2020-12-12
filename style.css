@@ -2,6 +2,8 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  /* Defines the space between two inline elements. This removes the 4px of space between the rows. */
+  line-height: 0;
 }
 
 body {
@@ -50,21 +52,21 @@ div.row div {
   height: 25px;
 }
 
-.ghost_1 {
+#ghost_1 {
   background-image: url("img/ghost_1.gif");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 
-.ghost_2 {
+#ghost_2 {
   background-image: url("img/ghost_2.gif");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 
-.ghost_3 {
+#ghost_3 {
   background-image: url("img/ghost_3.gif");
   background-repeat: no-repeat;
   background-position: center;

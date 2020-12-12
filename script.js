@@ -1,18 +1,31 @@
 "use strict";
+// import { world } from "world.js";
 const pacmanEl = document.getElementById("pacman");
-// Create multi-dimensional array
-// 10 x 10 (0 - 9)
+const ghost_1El = document.getElementById("ghost--1");
+const ghost_2El = document.getElementById("ghost--2");
+const ghost_3El = document.getElementById("ghost--3");
+let points = 0;
+
 let world = [
-  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-  [2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-  [2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-  [2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-  [2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-  [2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-  [2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-  [2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-  [2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 2, 1, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 2, 1, 2, 1, 1, 1, 2, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 1, 1, 2, 2, 1, 1, 2, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 1, 1, 1, 2, 1, 1, 2, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2, 0, 0, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 2, 2, 2, 2, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 ];
 
 function displayWorld() {
@@ -45,15 +58,15 @@ function displayWorld() {
 displayWorld();
 
 const pacmanObj = {
-  x: 8,
-  y: 8,
+  x: 0.4,
+  y: 0.4,
 };
 
 function displayPacman() {
   // Move pacman up negative value down positive
-  pacmanEl.style.top = pacmanObj.y + "px";
+  pacmanEl.style.top = pacmanObj.y * 20 + "px";
   // Move back right positive and left negative
-  pacmanEl.style.left = pacmanObj.x + "px";
+  pacmanEl.style.left = pacmanObj.x * 20 + "px";
 }
 
 displayPacman();
@@ -61,13 +74,33 @@ displayPacman();
 document.onkeydown = function (e) {
   console.log(e.key);
   if (e.key === "ArrowUp") {
-    pacmanObj.y -= 20;
+    pacmanObj.y--;
   } else if (e.key === "ArrowDown") {
-    pacmanObj.y += 20;
+    pacmanObj.y++;
   } else if (e.key === "ArrowRight") {
-    pacmanObj.x += 20;
+    pacmanObj.x++;
   } else if (e.key === "ArrowLeft") {
-    pacmanObj.x -= 20;
+    pacmanObj.x--;
   }
   displayPacman();
+  cellValue();
 };
+
+function cellValue() {
+  // Get current location of pacman
+  let pacX = Math.floor(pacmanObj.x); // column
+  let pacY = Math.floor(pacmanObj.y); // row
+  console.log(pacX);
+  // Value of the spot in world where pacman is at
+  let worldValue = world[pacY][pacX];
+  console.log(worldValue);
+  console.log(worldValue === 1);
+  if (worldValue === 1) {
+    console.log("hello");
+    console.log(world[pacY][pacX]);
+    points += 25; // points for eating a coin
+    console.log(points);
+    world[pacY][pacX] = 0; // Make empty
+    displayWorld();
+  }
+}
